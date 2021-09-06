@@ -22,14 +22,20 @@ def fill_and_return_error(text):
     text_input.send_keys(text)
     return error_message.text
 
-
+#* Helyes kitöltés esete:
+#    * title: abcd1234
+#    * Nincs validációs hibazüzenet
 def test_positive():
     assert fill_and_return_error(test_data[0]) == ""
 
-
+#* Illegális karakterek esete:
+#    * title: teszt233@
+#    * Only a-z and 0-9 characters allewed.
 def test_illegal():
     assert fill_and_return_error(test_data[1]) == text_error_message_illegal
-
+#* Tul rövid bemenet esete:
+#    * title: abcd
+#    * Title should be at least 8 characters; you entered 4.
 
 def test_short():
     assert fill_and_return_error(test_data[2]) == text_error_message_length
